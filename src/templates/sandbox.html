@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptShield Threat Sandbox</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Specific layout customizations for dedicated sandbox page */
+        .sandbox-body {
+            max-width: 800px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .simulator-form {
+            padding: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo-area">
+                <span class="shield-icon">🧪</span>
+                <div>
+                    <h1>PROMPTSHIELD <span>SANDBOX</span></h1>
+                    <p class="subtitle">Interactive Payload Threat Simulator</p>
+                </div>
+            </div>
+            <div class="system-status">
+                <span class="status-indicator online"></span>
+                <span>SANDBOX SECURE</span>
+            </div>
+        </header>
+
+        <!-- Main Body -->
+        <main class="sandbox-body">
+            <div class="card glass simulator-card">
+                <div class="card-header">
+                    <h2>🧪 Threat Simulator & Sandbox Console</h2>
+                    <span class="badge">PORT 5002</span>
+                </div>
+                <p class="simulator-desc">
+                    Test Prompt Shield's multi-layered threat detection engines (Regex rules + Logistic Regression ML classifier). 
+                    The system automatically extracts your remote connection IP to test administrative cooldowns and access blocks.
+                </p>
+                
+                <form id="sandbox-form" class="simulator-form">
+                    <div class="form-group">
+                        <label>Scanned Client IP:</label>
+                        <div class="real-ip-display" style="background: rgba(11, 16, 27, 0.4); border: 1px dashed var(--border-color); padding: 12px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--primary-cyan); font-weight: 600;">
+                            [REAL CLIENT CONNECTION IP]
+                        </div>
+                        <span class="field-hint">Prompt Shield automatically extracts your connection IP for rate-limiting.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sandbox-prompt">Prompt Text Input:</label>
+                        <textarea id="sandbox-prompt" placeholder="Type a prompt to test. Use tags below for sample threats..." required></textarea>
+                        <div class="suggestion-tags">
+                            <span class="tag suggestion-benign">Benign Prompt</span>
+                            <span class="tag suggestion-injection">Prompt Injection</span>
+                            <span class="tag suggestion-jailbreak">Jailbreak</span>
+                            <span class="tag suggestion-extraction">System Exfil</span>
+                            <span class="tag suggestion-sqli">SQL Injection</span>
+                            <span class="tag suggestion-xss">XSS Payload</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="primary-btn">
+                        <span class="btn-text">Check Payload & Gateway Blocklist</span>
+                        <span class="loading-spinner hidden"></span>
+                    </button>
+                </form>
+
+                <!-- Analysis Output Console -->
+                <div id="console-output" class="console-output hidden">
+                    <div class="console-header">
+                        <span>ANALYSIS CONSOLE OUTPUT</span>
+                        <span class="console-close" id="clear-console">Clear</span>
+                    </div>
+                    <div class="console-body" id="console-body">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='sandbox.js') }}"></script>
+</body>
+</html>

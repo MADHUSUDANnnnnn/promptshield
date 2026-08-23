@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptShield SOC Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo-area">
+                <span class="shield-icon">🛡️</span>
+                <div>
+                    <h1>PROMPT<span>SHIELD</span></h1>
+                    <p class="subtitle">AI Security Operations Center (SOC)</p>
+                </div>
+            </div>
+            <div class="system-status">
+                <span class="status-indicator online"></span>
+                <span>SYSTEM STATUS: ACTIVE Protection</span>
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <section class="kpi-grid">
+            <div class="kpi-card" id="kpi-requests">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-content">
+                    <h3>Total Scans</h3>
+                    <p class="kpi-value" id="stat-total-scans">0</p>
+                </div>
+            </div>
+            <div class="kpi-card danger" id="kpi-attacks">
+                <div class="kpi-icon">🔥</div>
+                <div class="kpi-content">
+                    <h3>Threats Blocked</h3>
+                    <p class="kpi-value" id="stat-threats-blocked">0</p>
+                </div>
+            </div>
+            <div class="kpi-card warning" id="kpi-flagged">
+                <div class="kpi-icon">⏳</div>
+                <div class="kpi-content">
+                    <h3>Cooldown IPs</h3>
+                    <p class="kpi-value" id="stat-cooldown-ips">0</p>
+                </div>
+            </div>
+            <div class="kpi-card blocked" id="kpi-blocked">
+                <div class="kpi-icon">🚫</div>
+                <div class="kpi-content">
+                    <h3>Blocked IPs</h3>
+                    <p class="kpi-value" id="stat-blocked-ips">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content Grid -->
+        <main class="dashboard-body" style="grid-template-columns: 1fr;">
+            <!-- Left Side: Alerts & Active Mitigation -->
+            <div class="left-panel">
+                <!-- Live Alerts Section -->
+                <div class="card glass">
+                    <div class="card-header">
+                        <h2>⚠️ Real-Time Security Alerts Log</h2>
+                        <span class="live-pulse">LIVE FEED</span>
+                    </div>
+                    <div class="table-container">
+                        <table id="alerts-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Source IP</th>
+                                    <th>Category</th>
+                                    <th>Risk Score</th>
+                                    <th>Severity</th>
+                                    <th>Action Triggered</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alerts-body">
+                                <tr>
+                                    <td colspan="6" class="empty-row">No security alerts logged. System secure.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mitigation Section -->
+                <div class="card glass">
+                    <div class="card-header">
+                        <h2>🔒 Active Mitigation registry (Rate-limits & Blocks)</h2>
+                    </div>
+                    <div class="table-container">
+                        <table id="mitigation-table">
+                            <thead>
+                                <tr>
+                                    <th>IP Address</th>
+                                    <th>Status</th>
+                                    <th>Threat History</th>
+                                    <th>Cooldown Remaining</th>
+                                    <th>Mitigation Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mitigation-body">
+                                <tr>
+                                    <td colspan="5" class="empty-row">No active IP constraints.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
