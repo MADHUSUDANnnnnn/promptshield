@@ -1,0 +1,16 @@
+============================================================
+PROMPTSHIELD DETECTION REPORT
+============================================================
+
+Timestamp: 2026-07-23 14:33:57
+
+Prompt:
+my name is Anish
+
+Final Decision: BENIGN
+Risk Score: 37.04
+Risk Level: medium
+ML Probability: 52.91%
+Regex Rules Triggered: 0
+Detected Categories: None
+============================================================
